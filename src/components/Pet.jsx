@@ -12,10 +12,14 @@ function Pet(props) {
     margin: 'auto',
     marginTop: '5%'
   }
+  const arrow = {
+    color: '#5ea1db'
+  };
+
   return (
     <div style={petStyle}>
       <img src='/pet.png' alt='pet' style={imgStyle}/>
-      <h2 onClick={ () => {props.changeView(1)} }>MENU</h2>
+      <h2><span style={arrow}>⫸</span> Menu <span style={arrow}>⫷</span></h2>
     </div>
   );
 }

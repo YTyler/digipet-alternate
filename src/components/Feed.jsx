@@ -12,17 +12,36 @@ function Feed(props) {
     margin: '8px',
     marginTop: '8%'
   }
+  const arrow0 = {
+    opacity: (props.selected === 0) ? '1' : '0',
+    color: '#5ea1db'
+  };
+  const arrow1 = {
+    opacity: (props.selected === 1) ? '1' : '0',
+    color: '#5ea1db'
+  };
+  const arrow2 = {
+    opacity: (props.selected === 2) ? '1' : '0',
+    color: '#5ea1db'
+  };
+
   return (
     <div style={feedStyles}>
-      <h2 style={style0}>A LITTLE</h2>
-      <br />
-      <br />
-      <br />
-      <h2 style={style1}>A LOT</h2>
-      <br />
-      <br />
-      <br />
-      <h2 style={style2}>A TON</h2>
+    <h2 style={style0} >
+      <span style={arrow0}>⫸</span> A LITTLE <span style={arrow0}>⫷</span>
+    </h2>
+    <br />
+    <br />
+    <br />
+    <h2 style={style1} >
+      <span style={arrow1}>⫸</span> A LOT <span style={arrow1}>⫷</span>
+    </h2>
+    <br />
+    <br />
+    <br />
+    <h2 style={style2} >
+      <span style={arrow2}>⫸</span> A TON <span style={arrow2}>⫷</span>
+    </h2>
     </div>
   );
 }

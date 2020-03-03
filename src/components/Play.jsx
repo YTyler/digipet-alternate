@@ -12,10 +12,14 @@ function Play(props) {
     margin: 'auto',
     marginTop: '20%',
   }
+  const arrow = {
+    color: '#5ea1db'
+  };
   return (
     <div style={playStyle}>
       <img src='/pet_play.png' style={imgStyle} alt='pet play'></img>
-      <h2>PLAY</h2>
+      <h2><span style={arrow}>⫸</span> Play <span style={arrow}>⫷</span></h2>
+
     </div>
   );
 }

@@ -38,7 +38,7 @@ function Menu(props) {
       <br />
       <br />
       <br />
-      <h2 onClick={ () => {props.changeView(4)} } style={style2} >
+      <h2 style={style2} >
         <span style={arrow2}>⫸</span> PLAY <span style={arrow2}>⫷</span>
       </h2>
     </div>

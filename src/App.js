@@ -19,7 +19,7 @@ class App extends React.Component {
         hunger: 100,
         happiness: 100
       },
-      currentView: 1,
+      currentView: 0,
       selected: 0
     };
     this.changeView = this.changeView.bind(this);
