@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import { connect } from 'react-redux'
+
+//Component Imports
 import Header from './components/Header';
 import LeftControl from './components/LeftControl';
 import RightControl from './components/RightControl';
@@ -28,11 +31,7 @@ class App extends React.Component {
     this.feed = this.feed.bind(this);
   }
 
-  changeView(number) {
-    this.setState({ selected: 0 });
-    this.setState({ currentView: number });
-  }
-
+//Stat Decrease on Timers
   componentDidMount() {
     this.gameLoopTimer = setInterval(() => {
       const newPet = {
@@ -47,6 +46,7 @@ class App extends React.Component {
     clearInterval(this.gameLoopTimer);
   }
 
+//Menu Controls
   validateEdge(num, top) {
     return (num < 0) ? 0 : (num > top) ? top : num;
   }
@@ -59,6 +59,7 @@ class App extends React.Component {
     this.setState({selected: (newNum)});
   }
 
+//Stat Increase Actions
   feed(selection) {
     const addedFood = (selection + 1) * 3;
     const newPetState = {
@@ -75,6 +76,12 @@ class App extends React.Component {
     };
     this.setState({pet: newPetState});
   }
+
+//Menu Changing
+changeView(number) {
+  this.setState({ selected: 0 });
+  this.setState({ currentView: number });
+}
 
   select() {
     if (this.state.currentView === 0) {
@@ -144,4 +151,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect()(App);
