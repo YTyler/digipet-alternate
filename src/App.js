@@ -22,7 +22,6 @@ class App extends React.Component {
         hunger: 100,
         happiness: 100
       },
-      currentView: 0,
       selected: 0
     };
     this.changeView = this.changeView.bind(this);
@@ -53,28 +52,10 @@ class App extends React.Component {
 
   upDown(mod) {
     let newNum = this.state.selected + mod;
-    if (this.state.currentView === 1 || this.state.currentView === 3) {
+    if (this.props.currentView === 1 || this.props.currentView === 3) {
       newNum = this.validateEdge(newNum, 2);
     }
     this.setState({selected: (newNum)});
-  }
-
-//Stat Increase Actions
-  feed(selection) {
-    const addedFood = (selection + 1) * 3;
-    const newPetState = {
-      hunger: (this.state.pet.hunger + addedFood),
-      happiness: this.state.pet.happiness
-    };
-    this.setState({pet: newPetState});
-  }
-
-  play() {
-    const newPetState = {
-      hunger: this.state.pet.hunger,
-      happiness: this.state.pet.happiness + 1
-    };
-    this.setState({pet: newPetState});
   }
 
 //Menu Changing
@@ -84,9 +65,9 @@ changeView(number) {
 }
 
   select() {
-    if (this.state.currentView === 0) {
+    if (this.props.currentView === 0) {
       this.changeView(1);
-    } else if (this.state.currentView === 1) {
+    } else if (this.props.currentView === 1) {
       if (this.state.selected === 0) {
         this.changeView(2);
       } else if (this.state.selected === 1) {
@@ -94,13 +75,32 @@ changeView(number) {
       } else if (this.state.selected === 2) {
         this.changeView(4);
       }
-    } else if (this.state.currentView === 3) {
+    } else if (this.props.currentView === 3) {
       this.feed(this.state.selected);
-    } else if (this.state.currentView === 4) {
+    } else if (this.props.currentView === 4) {
       this.play(this.state.selected);
     }
     return 0;
   }
+
+  //Stat Increase Actions
+    feed(selection) {
+      const addedFood = (selection + 1) * 3;
+      const newPetState = {
+        hunger: (this.state.pet.hunger + addedFood),
+        happiness: this.state.pet.happiness
+      };
+      this.setState({pet: newPetState});
+    }
+
+    play() {
+      const newPetState = {
+        hunger: this.state.pet.hunger,
+        happiness: this.state.pet.happiness + 1
+      };
+      this.setState({pet: newPetState});
+    }
+
 
   render() {
     const mainGridStyles = {
@@ -116,7 +116,7 @@ changeView(number) {
     };
 
     const chooseView = () => {
-      switch(this.state.currentView) {
+      switch(this.props.currentView) {
       case 0:
         return <Pet changeView={this.changeView}/>;
       case 1:
@@ -151,4 +151,11 @@ changeView(number) {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => {
+  return {
+    currentView: state.currentView,
+
+  }
+}
+
+export default connect(mapStateToProps)(App);
